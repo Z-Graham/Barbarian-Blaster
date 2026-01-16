@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://hci5485wb50o"]
+[gd_scene load_steps=6 format=3 uid="uid://hci5485wb50o"]
 
-[sub_resource type="MeshLibrary" id="MeshLibrary_o3emq"]
+[ext_resource type="MeshLibrary" uid="uid://b1d8x5eoke2rk" path="res://MeshLibraries/space_library.tres" id="1_wttys"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3emq"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,10 +15,19 @@ sky = SubResource("Sky_wttys")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep3f0"]
+albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+
 [node name="BaseLevel" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = SubResource("MeshLibrary_o3emq")
+mesh_library = ExtResource("1_wttys")
+cell_size = Vector3(4, 4, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 65535, 1441792, 0, 65535, 1441792, 0, 0, 1441792, 65535, 0, 1441792, 65534, 0, 1441792, 65533, 0, 1441792, 65533, 1, 1441792, 65534, 1, 1441792, 65535, 1, 1441792, 0, 1, 1441792, 0, 2, 1441792, 65535, 2, 1441792, 65534, 2, 1441792, 65533, 2, 1441792, 1, 2, 1441792, 1, 1, 1441792, 1, 0, 1441792, 1, 65535, 1441792, 2, 65535, 1441792, 2, 0, 1441792, 2, 1, 1441792, 2, 2, 1441792, 65534, 65535, 1441792, 65533, 65535, 1441792, 65532, 2, 1441792, 65532, 1, 1441792, 65532, 0, 1441792, 65532, 65535, 1441792, 3, 2, 1441792, 3, 1, 1441792, 3, 0, 1441792, 3, 65535, 1441792, 0, 65534, 1441792, 65535, 65534, 1441792, 65534, 65534, 1441792, 65533, 65534, 1441792, 65532, 65534, 1441792, 1, 65534, 1441792, 2, 65534, 1310720, 3, 65534, 1441792, 4, 65535, 1310720, 4, 65534, 1310720, 4, 0, 1310720, 4, 1, 1310720, 4, 2, 1310720, 65531, 2, 1310720, 65531, 1, 1310720, 65531, 0, 1310720, 65531, 65535, 1310720, 65531, 65534, 1310720)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ep3f0")
@@ -30,6 +39,7 @@ shadow_enabled = true
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
+material = SubResource("StandardMaterial3D_ep3f0")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.42261824, 0.9063078, 0, -0.9063078, 0.42261824, 0, 14.5, 9.5)
