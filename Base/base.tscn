@@ -9,8 +9,15 @@ albedo_color = Color(0.1333332, 1, 0, 1)
 script = ExtResource("1_u1x2a")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24944973, 1.7679, 0.9390812)
 radius = 2.2226563
 height = 3.3309326
 sides = 25
 material = SubResource("StandardMaterial3D_ode36")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28671527, 0)
+billboard = 1
+no_depth_test = true
+text = "5"
+font_size = 500
+outline_size = 100

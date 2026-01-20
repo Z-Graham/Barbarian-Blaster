@@ -20,9 +20,9 @@ glow_enabled = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep3f0"]
 albedo_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
 
-[sub_resource type="Curve3D" id="Curve3D_wttys"]
+[sub_resource type="Curve3D" id="Curve3D_ospef"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0.07750893, 0, 0.13248158, -0.35107994, 0, -0.55463123, 0.35107994, 0, 0.55463123, 0.17772293, 0, 8.069507, 0.0728569, 0, -0.68036556, -0.0728569, 0, 0.68036556, 20.147732, 0, 8.579846, -0.87807465, 0, -0.05945587, 0.87807465, 0, 0.05945587, 20.476763, 0, 16.472904, -0.03711319, 0, 1.3583508, 0.03711319, 0, -1.3583508, 27.965664, 0, 15.811258, 0, 0, 0, 0, 0, 0, 28.003407, 0, 1.4910393),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -14.186174, 0, -7.7041078, -0.5801525, 0, -0.31755185, 0.5801525, 0, 0.31755185, -14.186174, 0, -1.5863289, 0.19549942, 0, -0.84435475, -0.19549942, 0, 0.84435475, 6.2064247, 0, -1.7562672, -1.2588139, 0, -0.08325863, 1.2588139, 0, 0.08325863, 6.263073, 0, 6.457421, -1.3907757, 0, 0.38547707, 1.3907757, 0, -0.38547707, 13.910297, 0, 6.6840024, 0, 0, 0, 0, 0, 0, 13.797001, 0, -7.0243545),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
 }
 point_count = 6
@@ -66,11 +66,9 @@ material = SubResource("StandardMaterial3D_ep3f0")
 transform = Transform3D(1, 0, 0, 0, 0.42261824, 0.9063078, 0, -0.9063078, 0.42261824, 0, 14.5, 9.5)
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.0761595, 0, -9.962751)
-curve = SubResource("Curve3D_wttys")
+curve = SubResource("Curve3D_ospef")
 
 [node name="Road" type="CSGPolygon3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1103735, 0, 9.568349)
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
 mode = 2
 path_node = NodePath("..")
@@ -86,7 +84,6 @@ path_joined = false
 material = SubResource("StandardMaterial3D_ospef")
 
 [node name="LeftEdge" type="CSGPolygon3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1103735, 0, 9.568349)
 material_override = SubResource("StandardMaterial3D_wttys")
 polygon = PackedVector2Array(-1.1, 0, -1.1, 0.3, -0.9, 0.3, -0.9, 0)
 mode = 2
@@ -103,7 +100,6 @@ path_joined = false
 material = SubResource("StandardMaterial3D_ikowy")
 
 [node name="RightEdge" type="CSGPolygon3D" parent="Path3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.1103735, 0, 9.568349)
 material_override = SubResource("StandardMaterial3D_wttys")
 polygon = PackedVector2Array(1.1, 0, 1.1, 0.3, 0.9, 0.3, 0.9, 0)
 mode = 2
@@ -120,8 +116,28 @@ path_joined = false
 material = SubResource("StandardMaterial3D_jg2hv")
 
 [node name="enemy" parent="Path3D" instance=ExtResource("2_ep3f0")]
-transform = Transform3D(-0.999312, 0, 0.03395834, 0, 0.99997175, 0, -0.03395829, 0, -0.99931335, 0.07750893, 0, 0.13248158)
+transform = Transform3D(-0.9949194, 0, 0.09951445, 0, 0.99997133, 0, -0.099514216, 0, -0.9949217, -14.186174, 0, -7.7041078)
+speed = 10
+
+[node name="enemy2" parent="Path3D" instance=ExtResource("2_ep3f0")]
+transform = Transform3D(-0.9989739, 0, -0.042650122, 0, 0.9999711, 0, 0.042650122, 0, -0.9989739, -14.432553, 0, -2.712838)
+progress = 5.0
+speed = 10
+
+[node name="enemy3" parent="Path3D" instance=ExtResource("2_ep3f0")]
+transform = Transform3D(0.035560217, 0, -0.99924344, 0, 0.9999714, 0, 0.99924344, 0, 0.035560217, -10.366794, 0, -1.6102664)
+progress = 10.0
+speed = 10
+
+[node name="enemy4" parent="Path3D" instance=ExtResource("2_ep3f0")]
+transform = Transform3D(0.03916616, 0, -0.9991119, 0, 0.9999714, 0, 0.99911106, 0, 0.039166193, -5.3704963, 0, -1.8048315)
+progress = 15.0
+speed = 10
+
+[node name="enemy5" parent="Path3D" instance=ExtResource("2_ep3f0")]
+transform = Transform3D(0.028186059, 0, -0.99948215, 0, 0.9999714, 0, 0.99948215, 0, 0.028186059, -0.3735208, 0, -1.9797715)
+progress = 20.0
 speed = 10
 
 [node name="Base" parent="." instance=ExtResource("3_ospef")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.217003, 0, -9.247278)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.217003, 2.3711615, -7.5347147)
