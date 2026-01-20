@@ -11,6 +11,7 @@ var health: int:
 			get_tree().reload_current_scene()
 func _ready() -> void:
 	health=max_health
+	health_label.modulate=Color.RED
 func take_damage():
 	print("Damage taken")
 	health-=1
