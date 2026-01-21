@@ -127,7 +127,7 @@ progress = 5.0
 speed = 10
 
 [node name="enemy3" parent="Path3D" instance=ExtResource("2_ep3f0")]
-transform = Transform3D(0.03556021, 0, -0.9992432, 0, 0.9999714, 0, 0.9992432, 0, 0.03556021, -10.366794, 0, -1.6102664)
+transform = Transform3D(0.03556021, 0, -0.99924314, 0, 0.9999714, 0, 0.99924314, 0, 0.03556021, -10.366794, 0, -1.6102664)
 progress = 10.0
 speed = 10
 
@@ -143,3 +143,5 @@ speed = 10
 
 [node name="Base" parent="." instance=ExtResource("3_ospef")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.217003, 2.3711615, -7.5347147)
+
+[node name="TurretManager" type="Node3D" parent="."]
