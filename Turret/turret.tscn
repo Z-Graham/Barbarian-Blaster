@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw17a41p1ksxa"]
+[gd_scene load_steps=6 format=3 uid="uid://dw17a41p1ksxa"]
+
+[ext_resource type="Script" uid="uid://d3ha0pgyr6pcp" path="res://Turret/turret.gd" id="1_5kpma"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_cb20n"]
 height = 1.0
@@ -18,6 +20,7 @@ bottom_radius = 0.1
 height = 1.055
 
 [node name="Turret" type="Node3D"]
+script = ExtResource("1_5kpma")
 
 [node name="TurretBase" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -31,10 +34,17 @@ mesh = SubResource("CylinderMesh_5kpma")
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0.42, 0)
 mesh = SubResource("CapsuleMesh_djkev")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="TurretBase/turretTop"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.2914667, 0.3989932, 0.34262237)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="TurretBase/turretTop/MeshInstance3D"]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, -1, 1.9106855e-15, 4.371139e-08, 0, 1, -4.371139e-08, -0.021006823, 0.2914667, 0.34262237)
 mesh = SubResource("CylinderMesh_ttsi1")
+skeleton = NodePath("../..")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="TurretBase/turretTop"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.1965701, 0.3989932, 0.34262237)
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="TurretBase/turretTop/MeshInstance3D"]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, -1, -1, 1.9106855e-15, 4.371139e-08, 0, 1, -4.371139e-08, -0.021000028, -0.291, 0.343)
 mesh = SubResource("CylinderMesh_ttsi1")
+skeleton = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
