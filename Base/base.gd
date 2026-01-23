@@ -16,6 +16,7 @@ var health: int:
 		if num==0:
 			get_tree().reload_current_scene()
 func _ready() -> void:
+	#Engine.time_scale=2
 	health=max_health
 func take_damage():
 	print("Damage taken")

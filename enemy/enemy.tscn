@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg4itj20udaao"]
+[gd_scene load_steps=5 format=3 uid="uid://bg4itj20udaao"]
 
 [ext_resource type="Script" uid="uid://cngyk32tqwkag" path="res://enemy/enemy.gd" id="1_2mvqj"]
 
@@ -10,6 +10,10 @@ material = SubResource("StandardMaterial3D_2mvqj")
 radius = 1.0
 height = 3.0
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2mvqj"]
+radius = 1.0
+height = 3.0
+
 [node name="enemy" type="PathFollow3D"]
 transform = Transform3D(-0.999313, 0, 0.033958364, 0, 0.99997175, 0, -0.033958323, 0, -0.9993142, 0, 0, 0)
 loop = false
@@ -18,3 +22,10 @@ script = ExtResource("1_2mvqj")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 1.5, 0)
 mesh = SubResource("CapsuleMesh_wttys")
+
+[node name="EnemyArea3D" type="Area3D" parent="." groups=["enemy_area"]]
+transform = Transform3D(1.0000001, 0, 3.7252903e-09, 0, 1.0000002, 0, -3.7252903e-09, 0, 1.0000001, 0, -2.3842534e-07, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyArea3D"]
+transform = Transform3D(1.0000211, 0, 7.4878335e-07, 0, 1.000021, 0, -8.419156e-07, 0, 1.0000211, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_2mvqj")
