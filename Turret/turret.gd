@@ -1,32 +1,41 @@
 extends Node3D
 
-@export var range=10.0
+@export var turret_range := 10.0
 
-var projectile=preload("res://Turret/projectile.tscn")
-var enemy_path:Path3D
-var target:Node3D
+var projectile = preload("res://Turret/projectile.tscn")
+var enemy_path : Path3D
+var target : Node3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+# turn and look at an enemy
 func _physics_process(delta: float) -> void:
-	target= find_best_target()
-	if target !=null:
-		look_at(target.global_position,Vector3.UP,true)
+	target = find_best_target()
+	if target != null:
+		look_at(target.global_position, Vector3.UP, true)
+	
 	
 func _on_timer_timeout() -> void:
-	if target !=null:
-		var proj=projectile.instantiate()
-		add_child(proj)
-		proj.global_position=global_position
-		proj.direction=basis.z
-	
+	if target != null:
+		var new_proj = projectile.instantiate()
+		add_child(new_proj)
+		new_proj.global_position = global_position
+		new_proj.direction = global_transform.basis.z
+		animation_player.play("fire")
 
 func find_best_target() -> Enemy:
-	var best_target=null
-	var best_progress=0
-	for en in enemy_path.get_children():
-		if en is Enemy:
-			var distance=global_position.distance_to(en.global_position)
-			if distance<=range:
-				if en.progress>best_progress:
-					best_target=en
-					best_progress=en.progress
+	var best_target = null
+	var best_progress = 0
+	
+	for enemy in enemy_path.get_children():
+		if enemy is Enemy:
+			if enemy.progress > best_progress:
+				var distance = global_position.distance_to(enemy.global_position)
+				if distance <= turret_range:
+					best_target = enemy
+					best_progress = enemy.progress
 	return best_target
+					
+	
+	
+	
+	

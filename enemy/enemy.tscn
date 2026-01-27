@@ -1,31 +1,82 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg4itj20udaao"]
+[gd_scene load_steps=9 format=3 uid="uid://cedg4p1ktt00c"]
 
-[ext_resource type="Script" uid="uid://cngyk32tqwkag" path="res://enemy/enemy.gd" id="1_2mvqj"]
+[ext_resource type="Script" uid="uid://dclhr4q00jc3u" path="res://Enemy/enemy.gd" id="1_2pb1h"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mvqj"]
-albedo_color = Color(1, 0, 0.016666412, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pb1h"]
+albedo_color = Color(0.24419999, 0.6904201, 0.74, 1)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_wttys"]
-material = SubResource("StandardMaterial3D_2mvqj")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xjnqo"]
+material = SubResource("StandardMaterial3D_2pb1h")
 radius = 1.0
 height = 3.0
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2mvqj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px1sc"]
+no_depth_test = true
+shading_mode = 0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2pb1h"]
 radius = 1.0
 height = 3.0
 
-[node name="enemy" type="PathFollow3D"]
-transform = Transform3D(-0.999313, 0, 0.033958364, 0, 0.99997175, 0, -0.033958323, 0, -0.9993142, 0, 0, 0)
+[sub_resource type="Animation" id="Animation_am0pq"]
+resource_name = "take_damage"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageHighlight:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_eqilm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DamageHighlight:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ncf7h"]
+_data = {
+&"RESET": SubResource("Animation_eqilm"),
+&"take_damage": SubResource("Animation_am0pq")
+}
+
+[node name="Enemy" type="PathFollow3D"]
+transform = Transform3D(0.9999959, 0, 0, 0, 1, 0, 0, 0, 0.9999959, 0, 0, 0)
 loop = false
-script = ExtResource("1_2mvqj")
+script = ExtResource("1_2pb1h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000002, 0, 0, 0, 1.0000002, 0, 1.5, 0)
-mesh = SubResource("CapsuleMesh_wttys")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+mesh = SubResource("CapsuleMesh_xjnqo")
+
+[node name="DamageHighlight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_px1sc")
+mesh = SubResource("CapsuleMesh_xjnqo")
 
 [node name="EnemyArea3D" type="Area3D" parent="." groups=["enemy_area"]]
-transform = Transform3D(1.0000001, 0, 3.7252903e-09, 0, 1.0000002, 0, -3.7252903e-09, 0, 1.0000001, 0, -2.3842534e-07, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyArea3D"]
-transform = Transform3D(1.0000211, 0, 7.4878335e-07, 0, 1.000021, 0, -8.419156e-07, 0, 1.0000211, 0, 1.5, 0)
-shape = SubResource("CapsuleShape3D_2mvqj")
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_2pb1h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ncf7h")
+}

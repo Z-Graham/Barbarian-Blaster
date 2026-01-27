@@ -1,22 +1,28 @@
 extends Node3D
 class_name Base
 
-@onready var health_label: Label3D = $Label3D
-@export var max_health:=5
-var health: int:
-	set(num):
-		health=num
-		health_label.text=str(health)+"/"+ str(max_health)
-		var red=Color.RED
-		var white=Color.WHITE
-		var color=red.lerp(white,health*1.0/max_health)
-		health_label.modulate=color
+@export var max_health := 5
+
+var health : int :
+	set(new_health):
+		health = new_health
+		label_3d.text = str(health) + "/" + str(max_health)
+		var red : Color = Color.RED
+		var white : Color = Color.WHITE
+		label_3d.modulate = red.lerp(white, float(health)/float(max_health))
 		
 		
-		if num==0:
+		if health == 0:
 			get_tree().reload_current_scene()
+@onready var label_3d: Label3D = $Label3D
+
 func _ready() -> void:
-	#Engine.time_scale=2
-	health=max_health
-func take_damage():
-	health-=1
+	#Engine.time_scale = 10
+	health = max_health
+
+func take_damage() -> void:
+	#print("damage taken by base")
+	health -= 1
+	
+
+	
