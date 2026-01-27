@@ -4,7 +4,7 @@ class_name Enemy
 @export var speed :float = 10.0
 @export var max_health := 50
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@export var gold_per_enemy=10
+@export var gold_per_enemy=100
 @onready var bank=get_tree().get_first_node_in_group("bank")
 var health : int :
 	set(new_health):
