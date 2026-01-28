@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	print(get_spawn_time())
+	print(get_enemy_health())
 
 func game_progress_ratio() -> float:
 	return (1-timer.time_left/game_length)
