@@ -59,7 +59,7 @@ _data = {
 transform = Transform3D(0.9999959, 0, 0, 0, 1, 0, 0, 0, 0.9999959, 0, 0, 0)
 loop = false
 script = ExtResource("1_2pb1h")
-speed = 5.0
+speed = 6.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1035514335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
