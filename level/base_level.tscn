@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d01unib15e15u" path="res://Turret/turret.tscn" id="6_7aaov"]
 [ext_resource type="Script" uid="uid://cdnrb2lll2co0" path="res://Bank/bank.gd" id="8_e1muw"]
 [ext_resource type="PackedScene" uid="uid://mkj7f0lctt2k" path="res://DifficultyManager/difficulty_manager.tscn" id="9_e1muw"]
+[ext_resource type="PackedScene" uid="uid://dkxoefpq1ci8r" path="res://UI/victory_layer.tscn" id="10_5x333"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4sal3"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -75,7 +76,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="EnemyPath" type="Path3D" parent="." unique_id=1832357805 node_paths=PackedStringArray("victory_layer", "difficulty_manager")]
 curve = SubResource("Curve3D_bo3yr")
 script = ExtResource("3_di6tl")
-victory_layer = NodePath("../VictoryLayer")
+victory_layer = NodePath("")
 enemy_scene = ExtResource("2_ep3f0")
 difficulty_manager = NodePath("../DifficultyManager")
 
@@ -139,17 +140,6 @@ enemy_path = NodePath("../EnemyPath")
 
 [node name="DifficultyManager" parent="." unique_id=1928832360 instance=ExtResource("9_e1muw")]
 
-[node name="VictoryLayer" type="CanvasLayer" parent="." unique_id=67301142]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="VictoryLayer" unique_id=1262533904]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.39215687)
-
 [node name="Bank" type="MarginContainer" parent="." unique_id=458508120 groups=["bank"]]
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,6 +155,8 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "Gold: 150"
 label_settings = SubResource("LabelSettings_2elnx")
+
+[node name="VictoryLayer" parent="." unique_id=1754688256 instance=ExtResource("10_5x333")]
 
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="_on_timer_timeout"]
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
